@@ -1,0 +1,4 @@
+resource "aws_key_pair" "kp_ssh_whoami" {
+  key_name   = "kp_ssh_whoami"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKKy5ZbMYRNYIV1FtCm8zALvuaaETs+kATZmLr2nzI+jMqKfkWichV+NiOKuPyH7ga3BLZght9ZxtcFaWzOzWEeqZ9SeaKYJ9nenPowE8w5sHcgJJFSeyYInRS/dFZ8cOD/8aa7IO56CNh1srMJRXnKyNl2ye01sSKo5JDeCp9nSa3hsvWsTW8GqJtnlqGCcdzWeF9YZBlSVwvy8TjhYJrMcv+yIPqjdPb7lesQEbkPAoEKXTRx6byH4L8CySgfvemUphrOuuU4tzy+ODTQGwfjbXjcQSbY7+APXslRH4mrYsaP01FIVjMaHw2mUoVSUk/+HnfK/B9gGoQvWIeDQ1Z eduardo@CPTR015"
+}
