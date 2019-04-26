@@ -1,5 +1,12 @@
 ---
 - hosts: all
+  sudo: yes
+  gather_facts: no
+
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python
+
   tasks:
 
   - name: Add an Apt signing key to a specific keyring file
@@ -17,3 +24,8 @@
     apt:
       name: docker-ce
       update_cache: yes
+
+  - name: Copy loadbalancer to server
+    copy:
+      src: ../apps/lb_nginx
+      dest: /home/ubuntu
