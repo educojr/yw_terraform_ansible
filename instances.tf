@@ -9,9 +9,9 @@ resource "aws_instance" "lb_whoami" {
 #        "${aws_security_group.fw_input_priv_default_whoami.id}",
         "${aws_security_group.fw_output_default_whoami.name}"
     ]
-    provisioner "local-exec" {
-        command = "sleep 90; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i '${aws_instance.lb_whoami.public_ip},' prov/docker_install.yml"
-    }
+    depends_on = ["aws_instance.app1_whoami",
+        "aws_instance.app2_whoami"
+    ]
 }
 
 resource "aws_instance" "app1_whoami" {
