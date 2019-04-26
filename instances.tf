@@ -9,21 +9,9 @@ resource "aws_instance" "lb_whoami" {
 #        "${aws_security_group.fw_input_priv_default_whoami.id}",
         "${aws_security_group.fw_output_default_whoami.name}"
     ]
-    #provisioner "local-exec" {
-        #command = "sleep 180"
-    #}
     provisioner "local-exec" {
-        command = "echo ´${aws_instance.lb_whoami.public_dns}´"
+        command = "sleep 90; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i '${aws_instance.lb_whoami.public_ip},' prov/docker_install.yml"
     }
-    provisioner "local-exec" {
-        command = "ansible-playbook -u ubuntu -i ´${aws_instance.lb_whoami.public_dns},´ prov/docker_install.yml --key-file=´key_pair.prv´"
-    }
-    #connection {
-        #type = "ssh"
-        #user = "ubuntu"
-        #private_key = "${file("key_pair.prv")}"
-        #agent = "false"
-    #}
 }
 
 resource "aws_instance" "app1_whoami" {
@@ -36,17 +24,6 @@ resource "aws_instance" "app1_whoami" {
 #        "${aws_security_group.fw_input_priv_default_whoami.id}",
         "${aws_security_group.fw_output_default_whoami.name}"
     ]
-    provisioner "remote-exec" {
-        inline      = [
-            "hostname"
-        ]
-    }
-    connection {
-        type = "ssh"
-        user = "ubuntu"
-        private_key = "${file("key_pair.prv")}"
-        agent = "false"
-    }
 }
 
 resource "aws_instance" "app2_whoami" {
@@ -59,15 +36,4 @@ resource "aws_instance" "app2_whoami" {
 #        "${aws_security_group.fw_input_priv_default_whoami.id}",
         "${aws_security_group.fw_output_default_whoami.name}"
     ]
-    provisioner "remote-exec" {
-        inline      = [
-            "hostname"
-        ]
-    }
-    connection {
-        type = "ssh"
-        user = "ubuntu"
-        private_key = "${file("key_pair.prv")}"
-        agent = "false"
-    }
 }
