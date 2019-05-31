@@ -1,0 +1,14 @@
+---
+- hosts: all
+
+  tasks:
+  - name: Copy loadbalancer to server
+    copy:
+      src: ../apps/lb_nginx
+      dest: /home/ubuntu
+
+  - name: build the image
+    docker_image: >
+      name=built-by-ansible
+      path=/ubuntu/site
+      state=present
