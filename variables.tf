@@ -1,9 +1,11 @@
 variable "aws_region" { default = "us-east-1" }
 
 variable "youraccesskey" {
+    default = "AKIAWBDVKRIRRMDNBHXS"
 }
 
 variable "yoursecretkey" {
+    default = "cK0iV4DsnkczlflkqbeqI4+kdchDDCEAMKSB6dfy"
 }
 
 variable "ip_range_ssh_access" {
@@ -25,6 +27,11 @@ data "aws_ami" "ubuntu" {
 
     owners = ["099720109477"] # Canonical
 }
+
+#variable "ip_pub_lb_whoami" {
+#    default = "${aws_eip.ip_pub_lb_whoami.public_ip}"
+#}
+
 
 #data "aws_vpc" "default" {
 #    filter {

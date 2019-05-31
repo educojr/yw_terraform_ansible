@@ -10,8 +10,7 @@ resource "aws_instance" "lb_whoami" {
         "${aws_security_group.fw_output_default_whoami.name}"
     ]
     depends_on = ["aws_instance.app1_whoami",
-        "aws_instance.app2_whoami"
-    ]
+        "aws_instance.app2_whoami"]
 }
 
 resource "aws_instance" "app1_whoami" {
